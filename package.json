@@ -1,0 +1,34 @@
+{
+  "name": "sync-json",
+  "version": "0.1.0",
+  "description": "Keep JSON files (or parts of them) in sync",
+  "main": "index.js",
+  "bin": {
+    "sync-json": "./bin/sync-json-cli.js"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "keywords": [
+    "sync",
+    "json"
+  ],
+  "author": "Josan Coba (https://github.com/josan-coba)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Josan-Coba/sync-json.git"
+  },
+  "dependencies": {
+    "async": "^2.0.0-rc.6",
+    "lodash": "^4.13.1",
+    "log-symbols": "^1.0.2",
+    "read-json-sync": "^1.1.1",
+    "yargs": "^4.7.1"
+  },
+  "devDependencies": {
+    "cp": "^0.2.0",
+    "glob": "^7.0.5",
+    "jasmine": "^2.4.1"
+  }
+}

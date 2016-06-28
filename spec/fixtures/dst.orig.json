@@ -1,0 +1,14 @@
+{
+  "name": "old-sync-json",
+  "version": "0.0.0",
+  "description": "This is a sample description",
+  "bin": {
+    "sync-json": "./bin/sync-json-cli.js"
+  },
+  "keywords": [
+    "sample",
+    "example",
+    "test"
+  ],
+  "author": ""
+}
