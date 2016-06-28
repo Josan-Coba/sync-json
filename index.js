@@ -30,8 +30,8 @@ function syncJson( src, dst, props, callback, progress ){
   else if(typeof props === 'string') props = [props];
   else if(typeof props === 'function'){
     // if props is not specified, params shift left
-    callback = props;
     progress = callback;
+    callback = props;
     props = Object.keys(srcObj);
   }
   else if(!Array.isArray(props)){

@@ -11,6 +11,47 @@ Synchronising [version] from package.json...
 Successfully synchronised
 ```
 
+## Installation
+
+```
+npm install -g sync-json
+```
+
+Alternatively it can be installed locally as a dependency with
+```
+npm install --save-dev sync-json
+```
+
+## Usage
+
+### CLI
+
+```
+$ sync-json --help
+Usage: sync-json [-p property] -s <source> <dest-files...>
+
+Options:
+  -p, --property  Each property to synchronize from source              [string]
+  -s, --source    Source file                                [string] [required]
+  -h, --help      Show help                                            [boolean]
+  --version       Show version number                                  [boolean]
+```
+
+### module
+
+If installed as a dependency it could be required as a module that exposes a single function `syncJson`:
+```javascript
+const syncJson = require('sync-json');
+syncJson( 'package.json', ['app/package.json', 'app/bower.json'], ['version', 'contributors'], function(err){ ... });
+```
+
+#### `syncJson(src, dst [, props], callback)`
+__Arguments:__
+1. src (<string>|<object>): The path to the source JSON or a js object.
+2. dst (<string>|[<string>]): Path or array of paths to the destination files.
+3. props ([<string>]): _Optional_. List of properties from the source object to copy to the destionation files. If not specified all the properties from `src` are taken.
+4. callback (<function>): nodejs style callback.
+
 ## License
 
 Copyright (c) 2016 [Josan Coba](https://github.com/Josan-Coba). Licensed under the MIT License (see [LICENSE](./LICENSE)).

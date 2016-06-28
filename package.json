@@ -7,7 +7,9 @@
     "sync-json": "./bin/sync-json-cli.js"
   },
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "sync",

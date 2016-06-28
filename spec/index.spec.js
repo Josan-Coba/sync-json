@@ -116,7 +116,7 @@ describe('sync-json', function(){
     });
     
     it('should keep all the source properties in sync', function(done){
-      syncJson(src, dst, props, function(err){
+      syncJson(src, dst, function(err){
 	if(err) return done(err);
 	let srcObj = readJsonSync(src);
 	let dstObj = readJsonSync(dst);
