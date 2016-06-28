@@ -45,14 +45,14 @@ If installed as a dependency it could be required as a module that exposes a sin
 const syncJson = require('sync-json');
 ```
 
-#### `syncJson(src, dst[, props], callback)`
+#### + `syncJson(src, dst[, props], callback)`
 
 __Arguments:__
 
-1. src (`<string>`|`<object>`): The path to the source JSON or a js object.
-2. dst (`<string>`|`[<string>]`): Path or array of paths to the destination files.
-3. props (`[<string>]`): _Optional_. List of properties from the source object to copy to the destionation files. If not specified all the properties from `src` are taken.
-4. callback (`<function>`): nodejs style callback.
+1. __src__ (`<string>`|`<object>`): The path to the source JSON or a js object.
+2. __dst__ (`<string>`|`[<string>]`): Path or array of paths to the destination files.
+3. __props__ (`[<string>]`): _Optional_. List of properties from the source object to copy to the destionation files. If not specified all the properties from `src` are taken.
+4. __callback__ (`<function>`): nodejs style callback.
 
 ```javascript
 syncJson( 'package.json', ['app/package.json', 'app/bower.json'], ['version', 'contributors'], function(err){ ... });
