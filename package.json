@@ -1,6 +1,6 @@
 {
   "name": "sync-json",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Keep JSON files (or parts of them) in sync",
   "main": "index.js",
   "bin": {
