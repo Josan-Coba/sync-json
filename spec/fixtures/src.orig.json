@@ -10,5 +10,6 @@
     "sync",
     "json"
   ],
-  "author": "Josan Coba (https://github.com/josan-coba)"
+  "author": "Josan Coba (https://github.com/josan-coba)",
+  "__sync": ["name", "version", "description", "main"]
 }

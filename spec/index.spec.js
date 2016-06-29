@@ -110,6 +110,26 @@ describe('sync-json', function(){
     });
   });
 
+  describe('when properties are specified in the source', function(){
+    beforeEach(function(){
+      props = '__sync';
+    });
+
+    it('should read them as an array and sync', function(done){
+      syncJson(src, dst, props, function(err){
+	if(err) return done(err);
+	let srcObj = readJsonSync(src);
+	let dstObj = readJsonSync(dst);
+	let pattern = _.pick(srcObj, srcObj[props]);
+
+	expect(dstObj).toEqual(jasmine.objectContaining(pattern));
+	expect(dstObj[props]).not.toEqual(srcObj[props]);
+
+	done();
+      });
+    });
+  });
+
   describe('when properties to sync are not specified', function(){
     beforeEach(function(){
       props = undefined;

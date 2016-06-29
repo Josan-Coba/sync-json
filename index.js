@@ -26,8 +26,8 @@ function syncJson( src, dst, props, callback, progress ){
     throw new TypeError(msg);
   }
   // props param typecheck
+  if(typeof props === 'string') props = srcObj[props];
   if(!props) props = Object.keys(srcObj); // defaults
-  else if(typeof props === 'string') props = [props];
   else if(typeof props === 'function'){
     // if props is not specified, params shift left
     progress = callback;
