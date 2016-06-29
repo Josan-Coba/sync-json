@@ -21,12 +21,16 @@ const argv = require('yargs')
       .option('s', {
 	alias: 'source',
 	demand: true,
-//	default: 'package.json',
 	describe: 'Source file',
 	nargs: 1,
 	normalize: true,
 	requiresArg: true,
 	type: 'string'
+      })
+      .option('v', {
+	alias: 'verbose',
+	describe: 'Output messages on success',
+	type: 'boolean'
       })
       .demand(1)
       .help('h')
@@ -40,15 +44,21 @@ let dst = _.map(argv._, path.normalize);
 let props = argv.property;
 function callback(err){
   if(err) throw err;
-  console.log('Successfully synchronised');
+  if(argv.verbose){
+    console.log('Successfully synchronised');
+  }
 }
 function progress(err, dstFile){
-  if(!err) console.log('', logSymbols.success, dstFile);
+  if(!err && argv.verbose){
+    console.log('', logSymbols.success, dstFile);
+  }
 }
 
+if(argv.verbose){
 console.log('Synchronising [' + props + '] from '
 	    + (src === '-' ? 'STDIN' : src)
 	    + '...');
+}
 
 if(src === '-'){
   src = 'STDIN';
