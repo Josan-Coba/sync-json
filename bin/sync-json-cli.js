@@ -48,7 +48,6 @@ const argv = require('yargs')
 	describe: 'Output messages on success',
 	type: 'boolean'
       })
-      .demand(1)
       .help('h')
       .alias('h', 'help')
       .version()
