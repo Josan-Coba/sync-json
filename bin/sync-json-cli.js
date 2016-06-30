@@ -10,7 +10,7 @@ const path = require('path');
 // Command line options processing
 const argv = require('yargs')
       .usage('Usage: $0 [-p <property> | -i <field>] -s <source> <dest-files...>')
-      .pkgConf('sync')
+      .pkgConf('sync', process.cwd())
       .option('s', {
 	alias: 'source',
 	demand: true,
