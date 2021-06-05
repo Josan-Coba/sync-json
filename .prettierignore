@@ -1,0 +1,8 @@
+/node_modules
+.vscode
+.serverless
+
+/dist/*
+!/dist/web
+/dist/web/*
+!/dist/web/index.html

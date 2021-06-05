@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "jasmine",
+    "test:prettier": "prettier --check .",
     "preversion": "npm test",
     "postversion": "git push && git push --tags"
   },
@@ -31,6 +32,7 @@
   "devDependencies": {
     "cp": "^0.2.0",
     "glob": "^7.0.5",
-    "jasmine": "^2.4.1"
+    "jasmine": "^2.4.1",
+    "prettier": "2.3.1"
   }
 }

@@ -5,10 +5,6 @@
   "bin": {
     "sync-json": "./bin/sync-json-cli.js"
   },
-  "keywords": [
-    "sample",
-    "example",
-    "test"
-  ],
+  "keywords": ["sample", "example", "test"],
   "author": ""
 }
