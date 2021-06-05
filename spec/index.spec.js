@@ -17,6 +17,7 @@ describe('sync-json', function () {
   let src
   let dst
   let props
+  let options
 
   beforeEach(function () {
     src = srcPath
@@ -207,6 +208,40 @@ describe('sync-json', function () {
         })
         done()
       })
+    })
+  })
+
+  describe('when called with "--new" option', function () {
+    beforeEach(function () {
+      props = undefined
+      options = { new: true }
+    })
+
+    it('should not update already existing props in dst files', function (done) {
+      syncJson(
+        src,
+        dst,
+        props,
+        function (err) {
+          if (err) return done(err)
+          let srcObj = readJsonSync(src)
+          let dstOrigObj = readJsonSync(dstOrig)
+          let dstObj = readJsonSync(dst)
+          const newProps = _.difference(
+            Object.keys(srcObj),
+            Object.keys(dstOrigObj),
+          )
+          const existingProps = Object.keys(dstOrigObj)
+          const pattern = _.pick(srcObj, newProps)
+
+          expect(dstObj).toEqual(jasmine.objectContaining(dstOrigObj))
+          expect(dstObj).toEqual(jasmine.objectContaining(pattern))
+
+          done()
+        },
+        undefined,
+        options,
+      )
     })
   })
 })

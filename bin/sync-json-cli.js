@@ -43,6 +43,12 @@ const argv = require('yargs')
     describe: 'Replaces "-p". Read the properties from a field of source',
   })
   .group(['p', 'i'], 'Properties to sync:')
+  .option('n', {
+    alias: ['new'],
+    demand: false,
+    describe: 'Only copy properties that do not exist on the target files',
+    type: 'boolean',
+  })
   .option('v', {
     alias: 'verbose',
     describe: 'Output messages on success',
@@ -58,6 +64,7 @@ const argv = require('yargs')
 let src = argv.source
 let dst = argv.targets
 let props = processProps(argv)
+let options = { new: argv.n }
 function callback(err) {
   if (err) throw err
   if (argv.verbose) {
@@ -84,10 +91,10 @@ if (src === '-') {
   src = 'STDIN'
   readFromStdin(function (err, data) {
     if (err) throw err
-    syncJson(data, dst, props, callback, progress)
+    syncJson(data, dst, props, callback, progress, options)
   })
 } else {
-  syncJson(src, dst, props, callback, progress)
+  syncJson(src, dst, props, callback, progress, options)
 }
 
 function readFromStdin(callback) {

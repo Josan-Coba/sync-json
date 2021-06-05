@@ -7,7 +7,7 @@ const fs = require('fs')
 
 module.exports = syncJson
 
-function syncJson(src, dst, props, callback, progress) {
+function syncJson(src, dst, props, callback, progress, options) {
   var srcObj
   // src param typecheck
   if (!src) return callback()
@@ -42,11 +42,26 @@ function syncJson(src, dst, props, callback, progress) {
     throw new TypeError(msg)
   }
   // progress param typecheck
-  if (typeof progress !== 'function' && typeof progress !== 'undefined') {
-    let msg =
-      'Parameter "progress" must be a function or undefined, not ' +
-      typeof progress
+  if (
+    typeof progress === 'object' &&
+    !!progress &&
+    typeof options === 'undefined'
+  ) {
+    // if progress is not specified, params shift left
+    options = progress
+    progress = undefined
+  } else if (
+    typeof progress !== 'function' &&
+    typeof progress !== 'undefined'
+  ) {
+    let msg = `Parameter "progress" must be a function or undefined, not '${typeof progress}'`
     throw new TypeError(msg)
+  }
+  // options param typecheck
+  if (typeof options !== 'object' && typeof options !== 'undefined') {
+    throw new TypeError(
+      `Parameter "options" must be an object or undefined, not '${typeof options}'`,
+    )
   }
 
   const toSync = _.pick(srcObj, props)
@@ -71,7 +86,12 @@ function syncJson(src, dst, props, callback, progress) {
     }
     try {
       dstObj = readJsonSync(dstFile)
-      Object.assign(dstObj, toSync)
+      if (options && options.new) {
+        const temp = Object.assign({}, toSync)
+        dstObj = Object.assign(temp, dstObj)
+      } else {
+        Object.assign(dstObj, toSync)
+      }
     } catch (err) {
       if (err.code === 'ENOENT') dstObj = toSync
       else throw err
